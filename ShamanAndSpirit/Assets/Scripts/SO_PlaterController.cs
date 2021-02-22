@@ -8,8 +8,12 @@ public class SO_PlaterController : ScriptableObject
 {
     [SerializeField]
     private InputActionAsset m_InputManger = null;
-
+        
     private Vector2 m_MoveVector = Vector2.zero;
+
+    [SerializeField]
+    private string nameMap;
+
     private void OnEnable()
     {
         BindInputs(true);
@@ -28,15 +32,15 @@ public class SO_PlaterController : ScriptableObject
         }
         if(p_AreEnebled)
         {
-            m_InputManger.FindAction("player/Move").performed += Move;
-            m_InputManger.FindAction("player/Move").canceled += Move;
+            m_InputManger.FindAction($"{nameMap}/Move").performed += Move;
+            m_InputManger.FindAction($"{nameMap}/Move").canceled += Move;
 
             m_InputManger.Enable();
         }
         else
         {
-            m_InputManger.FindAction("player/Move").performed -= Move;
-            m_InputManger.FindAction("player/Move").canceled -= Move;
+            m_InputManger.FindAction($"{nameMap}/Move").performed -= Move;
+            m_InputManger.FindAction($"{nameMap}/Move").canceled -= Move;
 
             m_InputManger.Disable();
         }
@@ -48,5 +52,10 @@ public class SO_PlaterController : ScriptableObject
         m_MoveVector = Vector3.ClampMagnitude(m_MoveVector, 1f);
     }
 
-    public Vector2 Movement => m_MoveVector;
+    public Vector2 Movement
+    {
+        get { return m_MoveVector; }
+        set { m_MoveVector = value; }
+    }
+
 }

@@ -1,25 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(PlayerInput))]
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
-    private SO_PlaterController m_InputController = null;
+    private InputAction m_Move;
 
     [SerializeField]
     private float m_Speed = 5;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private PlayerInput m_PlayerInput = null;
+
+    Vector2 move;
 
     // Update is called once per frame
     void Update()
     {
-        Movement(m_InputController.Movement, Time.deltaTime);
+        if (m_PlayerInput == null)
+        {
+            m_PlayerInput = GetComponent<PlayerInput>();
+            m_Move = m_PlayerInput.actions["move"];
+        }
+        move = m_Move.ReadValue<Vector2>();
+        Movement(move, Time.deltaTime);
     }
 
     private void Movement(Vector2 p_Movement, float p_DeltaTime)
