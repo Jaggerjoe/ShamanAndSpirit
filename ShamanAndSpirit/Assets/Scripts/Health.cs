@@ -18,7 +18,14 @@ public class Health : MonoBehaviour
     {
         if (m_Health <= 0.0f)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            if (gameObject.tag == "Shaman" || gameObject.tag == "Spirit")
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
