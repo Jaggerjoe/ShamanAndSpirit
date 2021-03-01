@@ -26,6 +26,8 @@ public class EnemyArcher : MonoBehaviour
     [SerializeField]
     private LayerMask m_MaskToDetect;
 
+    private float m_CurrentStunDuration = 0.0f;
+
     public void Start()
     {
         PlayerMovement[] m_Players = FindObjectsOfType<PlayerMovement>();
@@ -99,12 +101,24 @@ public class EnemyArcher : MonoBehaviour
         Move();
         AttackRange();
         transform.LookAt(m_Target);
+
+
+        if (m_CurrentStunDuration > 0.0f)
+        {
+            m_CurrentStunDuration = m_CurrentStunDuration - Time.deltaTime;
+        }
+        else
+        {
+            GetUnStunned();
+        }
     }
 
     public void GetStunned(float p_StunDuration)
     {
         CanAttack = false;
         CanMove = false;
+
+        m_CurrentStunDuration = p_StunDuration;
     }
 
     private void GetUnStunned()
