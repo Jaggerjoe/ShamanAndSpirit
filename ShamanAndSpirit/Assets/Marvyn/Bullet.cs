@@ -22,6 +22,6 @@ public class Bullet : MonoBehaviour
     }
     private void Start()
     {
-        m_RigidBody.AddForce((m_Player.transform.position), ForceMode.Impulse);
+        m_RigidBody.AddForce((m_Player.transform.position - transform.position), ForceMode.Impulse);
     }
 }

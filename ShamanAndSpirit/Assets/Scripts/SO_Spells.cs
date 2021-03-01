@@ -76,7 +76,10 @@ public class SO_Spells : ScriptableObject
                 GameObject l_PlayerObject = p_PlayerCasting.gameObject;
                 Vector3 l_Vector3Direction = new Vector3(p_AimDirection.x, 0.0f, p_AimDirection.y);
                 l_Vector3Direction.Normalize();
-                l_PlayerObject.transform.Translate(l_Vector3Direction * m_Range, Space.World);
+                if (!Physics.Raycast(p_PlayerCasting.transform.position, l_Vector3Direction, m_Range, m_AffectedEntities))
+                {
+                    l_PlayerObject.transform.Translate(l_Vector3Direction * m_Range, Space.World);
+                }
                 break;
         }
         return m_CoolDown;

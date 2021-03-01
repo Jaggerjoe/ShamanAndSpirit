@@ -17,7 +17,7 @@ MonoBehaviour:
   m_CoolDown: 0.75
   m_AffectedEntities:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_Damages: 0
   m_Range: 7
   m_ProjectilePrefab: {fileID: 0}
