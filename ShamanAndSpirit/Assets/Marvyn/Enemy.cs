@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
             foreach (Collider collider in hitColliders)
             {
 
-                Attack();
+                Attack(collider);
 
 
             }
@@ -65,7 +65,7 @@ public class Enemy : MonoBehaviour
         
     }
 
-    public void Attack()
+    public void Attack(Collider p_AttackedEntity)
     {
         CanMove = false;
         
@@ -78,7 +78,7 @@ public class Enemy : MonoBehaviour
         else
         {
             m_AttackRate = 0;
-            Debug.Log("hit");
+            p_AttackedEntity.GetComponent<Health>().TakeDamages(10.0f);
 
         }
     }
@@ -89,7 +89,7 @@ public class Enemy : MonoBehaviour
         AttackRange();
     }
 
-    private void GetStunned()
+    public void GetStunned(float p_StunDuration)
     {
         CanAttack = false;
         CanMove = false;

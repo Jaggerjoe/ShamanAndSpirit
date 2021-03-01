@@ -10,17 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7a794efb1207dc4ca9a10e7b9797c77, type: 3}
-  m_Name: KnockBackCone
+  m_Name: DamagesCone
   m_EditorClassIdentifier: 
   m_SpellType: 1
-  m_ManaCost: 0
-  m_CoolDown: 3
+  m_ManaCost: 5
+  m_CoolDown: 1
   m_AffectedEntities:
     serializedVersion: 2
-    m_Bits: 4294967295
-  m_Damages: 0
-  m_Range: 10
+    m_Bits: 1024
+  m_Damages: 40
+  m_Range: 3
+  m_ProjectilePrefab: {fileID: 0}
+  m_Speed: 5
+  m_Quantity: 1
+  m_TimeBetweenProjectiles: 0.5
+  m_ExplosiveProjectile: 0
+  m_ExplosionRange: 0
   m_Angle: 45
-  m_SecondaryEffects: 01000000
+  m_SecondaryEffects: 
   m_StunDuration: 2
-  m_KnockbackValue: 10
+  m_KnockbackValue: 1

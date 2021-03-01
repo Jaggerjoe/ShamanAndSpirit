@@ -101,7 +101,7 @@ public class EnemyArcher : MonoBehaviour
         transform.LookAt(m_Target);
     }
 
-    private void GetStunned()
+    public void GetStunned(float p_StunDuration)
     {
         CanAttack = false;
         CanMove = false;
