@@ -28,7 +28,14 @@ public class EnemyArcher : MonoBehaviour
 
     public void Start()
     {
-        m_Target = FindObjectOfType<PlayerManager>().transform;
+        PlayerMovement[] m_Players = FindObjectsOfType<PlayerMovement>();
+        foreach (PlayerMovement l_Player in m_Players)
+        {
+            if (l_Player.tag == "Shaman")
+            {
+                m_Target = l_Player.transform;
+            }
+        }
     }
 
     public void Move()

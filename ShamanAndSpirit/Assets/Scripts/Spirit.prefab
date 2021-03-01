@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 7343101415180859676}
   - component: {fileID: 1654621722}
   - component: {fileID: 1654621723}
+  - component: {fileID: 2962716957200771008}
   m_Layer: 0
   m_Name: Spirit
-  m_TagString: Untagged
+  m_TagString: Spirit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,7 +108,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9438c3e2d07e4bf4e9418f8c2fe0d54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerController: {fileID: 0}
   m_Speed: 5
 --- !u!114 &1654621723
 MonoBehaviour:
@@ -140,3 +140,16 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &2962716957200771008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7343101415180859650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daf4ca3317f9c0c4fb4d6d9a5e5cde38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MaxHealth: 100

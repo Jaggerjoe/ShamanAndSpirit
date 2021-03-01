@@ -56,7 +56,7 @@ public class SO_Spells : ScriptableObject
 
     public float CastSpell(SpellsCasting p_PlayerCasting, Vector2 p_AimDirection)
     {
-        switch(m_SpellType)
+        switch (m_SpellType)
         {
             case SpellType.Projectile:
                 p_PlayerCasting.StartCoroutine(CreateProjectiles(p_PlayerCasting, p_AimDirection));
@@ -95,10 +95,10 @@ public class SO_Spells : ScriptableObject
             l_CurrentTimer = m_TimeBetweenProjectiles;
             Vector3 l_ProjectilePosition = new Vector3(p_PlayerCasting.transform.position.x + p_AimDirection.x, p_PlayerCasting.transform.position.y, p_PlayerCasting.transform.position.z + p_AimDirection.y);
             GameObject l_Projectile = Instantiate(m_ProjectilePrefab, l_ProjectilePosition, Quaternion.identity);
-            l_Projectile.GetComponent<Projectile>().SetProjectile(m_AffectedEntities, m_Speed, p_AimDirection, m_ExplosiveProjectile, m_ExplosionRange);
+            l_Projectile.GetComponent<Projectile>().SetProjectile(m_AffectedEntities, m_Speed, p_AimDirection, m_ExplosiveProjectile, m_ExplosionRange, m_Damages);
         }
     }
-    
+
     public void ApplySpellEffect(Collider p_AffectedEntity, SpellsCasting p_PlayerCasting, Vector2 p_AimDirection)
     {
         Debug.Log(p_AimDirection.normalized);
@@ -107,8 +107,16 @@ public class SO_Spells : ScriptableObject
         Debug.Log(m_Angle / 2.0f);
         if (l_Angle <= m_Angle / 2.0f)
         {
-            //Récupérer le composant de vie de l'ennemi
-            //Infliger des dégâts à l'ennemi
+            //Infliger des dégâts
+            if ((p_AffectedEntity.GetComponent<Enemy>() != null) || (p_AffectedEntity.GetComponent<EnemyArcher>() != null))
+            {
+                float l_RemainingLife = p_AffectedEntity.GetComponent<Health>().TakeDamages(m_Damages);
+                if (l_RemainingLife <= 0.0f)
+                {
+                    return;
+                }
+            }
+
             foreach (SecondaryEffects l_Effect in m_SecondaryEffects)
             {
                 switch (l_Effect)

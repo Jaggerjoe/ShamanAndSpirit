@@ -5,12 +5,13 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     private LayerMask m_AffectedEntities;
+    private float m_Damages;
     private float m_Speed;
     private Vector3 m_Direction;
     private bool m_ExplodeOnImpact = false;
     private float m_ExplosionRange = 5.0f;
 
-    public void SetProjectile(LayerMask p_AffectedEntities, float p_Speed, Vector3 p_Direction, bool p_ExplodeOnImpact, float p_ExplosionRange)
+    public void SetProjectile(LayerMask p_AffectedEntities, float p_Speed, Vector3 p_Direction, bool p_ExplodeOnImpact, float p_ExplosionRange, float p_Damages)
     {
         m_AffectedEntities = p_AffectedEntities;
         m_Speed = p_Speed;
@@ -21,6 +22,8 @@ public class Projectile : MonoBehaviour
 
         m_ExplodeOnImpact = p_ExplodeOnImpact;
         m_ExplosionRange = p_ExplosionRange;
+
+        m_Damages = p_Damages;
     }
 
     private void Update()
@@ -47,8 +50,15 @@ public class Projectile : MonoBehaviour
 
     private void CheckDamages(GameObject p_AffectedEntity)
     {
-        //Récupérer composant de vie de l'ennemi
-        //Infliger les dégâts
+        //Infliger des dégâts
+        if ((p_AffectedEntity.GetComponent<Enemy>() != null) || (p_AffectedEntity.GetComponent<EnemyArcher>() != null))
+        {
+            float l_RemainingLife = p_AffectedEntity.GetComponent<Health>().TakeDamages(m_Damages);
+            if (l_RemainingLife <= 0.0f)
+            {
+                return;
+            }
+        }
     }
 
 }
