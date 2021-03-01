@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7a794efb1207dc4ca9a10e7b9797c77, type: 3}
+  m_Name: MultipleExplosiveProjectile
+  m_EditorClassIdentifier: 
+  m_SpellType: 0
+  m_ManaCost: 25
+  m_CoolDown: 5
+  m_AffectedEntities:
+    serializedVersion: 2
+    m_Bits: 1024
+  m_Damages: 1
+  m_Range: 5
+  m_ProjectilePrefab: {fileID: 7389507010555901023, guid: 788ab8e97e0ba6042bf45ec51e7bfda1,
+    type: 3}
+  m_Speed: 20
+  m_Quantity: 4
+  m_TimeBetweenProjectiles: 0.3
+  m_ExplosiveProjectile: 1
+  m_ExplosionRange: 2
+  m_Angle: 45
+  m_SecondaryEffects: 
+  m_StunDuration: 2
+  m_KnockbackValue: 1

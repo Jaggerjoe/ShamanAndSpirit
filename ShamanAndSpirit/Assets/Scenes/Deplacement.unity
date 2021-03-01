@@ -328,7 +328,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 587917485, guid: be8f195f328cbe84eaeb7d3b3a113ed2, type: 3}
       propertyPath: m_DefaultControlScheme
-      value: Controller
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 600233236792608683, guid: be8f195f328cbe84eaeb7d3b3a113ed2,
         type: 3}

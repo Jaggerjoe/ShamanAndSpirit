@@ -54,8 +54,9 @@ public class SpellsCasting : MonoBehaviour
             p_CurrentSpellCoolDown = p_CurrentSpellCoolDown - Time.deltaTime;
 
         }
-        else if (p_SpellInput.ReadValue<float>() != 0)
+        else if (p_SpellInput.ReadValue<float>() != 0 && p_CastSpell.ManaCost <= GetComponent<PlayerManaData>().m_CurrentMana)
         {
+            GetComponent<PlayerManaData>().m_CurrentMana = GetComponent<PlayerManaData>().m_CurrentMana - p_CastSpell.ManaCost;
             p_CurrentSpellCoolDown = p_CastSpell.CastSpell(this, m_AimDirection);
         }
     }

@@ -32,7 +32,7 @@ public class ManaManager : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if(other.transform.tag == "Player" && m_CurrentMana >= 0 && m_PlayerM.m_CurrentMana < m_PlayerM.m_MaxMana )
+        if(other.transform.tag == "Shaman" && m_CurrentMana >= 0 && m_PlayerM.m_CurrentMana < m_PlayerM.m_MaxMana )
         {
             Debug.Log("ouké");
             m_PlayerM.m_CurrentMana += 10 * Time.deltaTime;
