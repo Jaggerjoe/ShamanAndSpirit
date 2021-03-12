@@ -30,3 +30,5 @@ MonoBehaviour:
   m_SecondaryEffects: 01000000
   m_StunDuration: 2
   m_KnockbackValue: 10
+  m_ParticlePrefab: {fileID: 8766476599404391432, guid: f37f513dec1786143932b9d721b51176,
+    type: 3}
