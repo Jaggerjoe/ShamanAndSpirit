@@ -16,9 +16,7 @@ public class Projectile : MonoBehaviour
         m_AffectedEntities = p_AffectedEntities;
         m_Speed = p_Speed;
 
-        m_Direction.x = p_Direction.x;
-        m_Direction.y = 0.0f;
-        m_Direction.z = p_Direction.y;
+        m_Direction = p_Direction;
 
         m_ExplodeOnImpact = p_ExplodeOnImpact;
         m_ExplosionRange = p_ExplosionRange;

@@ -54,8 +54,12 @@ public class SO_Spells : ScriptableObject
     [SerializeField]
     private float m_KnockbackValue = 1.0f;
 
+    [Header("Feedbacks")]
+    [SerializeField]
+    private GameObject m_ParticlePrefab = null;
 
-    public float CastSpell(SpellsCasting p_PlayerCasting, Vector2 p_AimDirection)
+
+    public float CastSpell(SpellsCasting p_PlayerCasting, Vector3 p_AimDirection)
     {
         switch (m_SpellType)
         {
@@ -63,6 +67,18 @@ public class SO_Spells : ScriptableObject
                 p_PlayerCasting.StartCoroutine(CreateProjectiles(p_PlayerCasting, p_AimDirection));
                 break;
             case SpellType.AOE:
+                if (m_ParticlePrefab != null)
+                {
+                    GameObject l_Particles = null;
+                    l_Particles = Instantiate(m_ParticlePrefab, p_PlayerCasting.transform.position, Quaternion.identity);
+                    var l_shapeModule = l_Particles.GetComponent<ParticleSystem>().shape;
+                    l_shapeModule.arc = m_Angle;
+                    var l_MainModule = l_Particles.GetComponent<ParticleSystem>().main;
+                    l_MainModule.startLifetime = m_Range / l_Particles.GetComponent<ParticleSystem>().main.startSpeedMultiplier;
+                    l_Particles.transform.forward = p_AimDirection;
+                    l_Particles.transform.Rotate(0.0f, (m_Angle - 180.0f) / 2.0f, 0.0f);
+                }
+
                 Collider[] l_AffectedEntities = Physics.OverlapSphere(p_PlayerCasting.transform.position, m_Range, m_AffectedEntities);
                 foreach (Collider l_AffectedEntity in l_AffectedEntities)
                 {
@@ -74,11 +90,10 @@ public class SO_Spells : ScriptableObject
                 break;
             case SpellType.Dash:
                 GameObject l_PlayerObject = p_PlayerCasting.gameObject;
-                Vector3 l_Vector3Direction = new Vector3(p_AimDirection.x, 0.0f, p_AimDirection.y);
-                l_Vector3Direction.Normalize();
-                if (!Physics.Raycast(p_PlayerCasting.transform.position, l_Vector3Direction, m_Range, m_AffectedEntities))
+                p_AimDirection.Normalize();
+                if (!Physics.Raycast(p_PlayerCasting.transform.position, p_AimDirection, m_Range, m_AffectedEntities))
                 {
-                    l_PlayerObject.transform.Translate(l_Vector3Direction * m_Range, Space.World);
+                    l_PlayerObject.transform.Translate(p_AimDirection * m_Range, Space.World);
                 }
                 break;
         }
@@ -86,7 +101,7 @@ public class SO_Spells : ScriptableObject
     }
 
 
-    public IEnumerator CreateProjectiles(SpellsCasting p_PlayerCasting, Vector2 p_AimDirection)
+    public IEnumerator CreateProjectiles(SpellsCasting p_PlayerCasting, Vector3 p_AimDirection)
     {
         float l_CurrentTimer = 0.0f;
         for (int i = 0; i < m_Quantity; i++)
@@ -97,18 +112,16 @@ public class SO_Spells : ScriptableObject
                 yield return null;
             }
             l_CurrentTimer = m_TimeBetweenProjectiles;
-            Vector3 l_ProjectilePosition = new Vector3(p_PlayerCasting.transform.position.x + p_AimDirection.x, p_PlayerCasting.transform.position.y, p_PlayerCasting.transform.position.z + p_AimDirection.y);
+            Vector3 l_ProjectilePosition = p_PlayerCasting.transform.position + p_AimDirection;
             GameObject l_Projectile = Instantiate(m_ProjectilePrefab, l_ProjectilePosition, Quaternion.identity);
+            l_Projectile.transform.forward = p_AimDirection;
             l_Projectile.GetComponent<Projectile>().SetProjectile(m_AffectedEntities, m_Speed, p_AimDirection, m_ExplosiveProjectile, m_ExplosionRange, m_Damages);
         }
     }
 
-    public void ApplySpellEffect(Collider p_AffectedEntity, SpellsCasting p_PlayerCasting, Vector2 p_AimDirection)
+    public void ApplySpellEffect(Collider p_AffectedEntity, SpellsCasting p_PlayerCasting, Vector3 p_AimDirection)
     {
-        Vector3 l_Vector3Aim = p_AimDirection;
-        l_Vector3Aim.z = l_Vector3Aim.y;
-        l_Vector3Aim.y = 0.0f;
-        float l_Angle = Vector3.Angle(l_Vector3Aim.normalized, (p_AffectedEntity.transform.position - p_PlayerCasting.transform.position).normalized);
+        float l_Angle = Vector3.Angle(p_AimDirection.normalized, (p_AffectedEntity.transform.position - p_PlayerCasting.transform.position).normalized);
         if (l_Angle <= m_Angle / 2.0f)
         {
             //Infliger des dégâts
@@ -129,6 +142,12 @@ public class SO_Spells : ScriptableObject
                         Vector3 l_KnockBackDirection = p_AffectedEntity.transform.position - p_PlayerCasting.transform.position;
                         l_KnockBackDirection.Normalize();
                         l_KnockBackDirection.y = 0.0f;
+
+                        if(Physics.Raycast(p_AffectedEntity.transform.position, l_KnockBackDirection, out RaycastHit l_HitInfo, m_KnockbackValue))
+                        {
+                            m_KnockbackValue = Vector3.Distance(l_HitInfo.point, p_AffectedEntity.transform.position);
+                        }
+
                         p_AffectedEntity.transform.Translate(l_KnockBackDirection * m_KnockbackValue, Space.World);
                         break;
                     case SecondaryEffects.Stun:
