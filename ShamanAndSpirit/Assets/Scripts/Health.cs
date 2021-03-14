@@ -8,6 +8,8 @@ public class Health : MonoBehaviour
     [SerializeField]
     private float m_MaxHealth = 100.0f;
     private float m_Health = 100.0f;
+    [SerializeField]
+    private GameObject m_DamagesParticles = null;
 
     private void Awake()
     {
@@ -31,6 +33,7 @@ public class Health : MonoBehaviour
 
     public float TakeDamages(float p_Damages)
     {
+        Instantiate(m_DamagesParticles, transform);
         return m_Health = Mathf.Clamp(m_Health - p_Damages, 0.0f, m_MaxHealth);
     }
 }
