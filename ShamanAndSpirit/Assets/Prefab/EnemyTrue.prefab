@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 1309214806275196885}
   - component: {fileID: 1309214806275196884}
   - component: {fileID: 1309214806275196883}
+  - component: {fileID: 6507831406235093143}
   - component: {fileID: 1309214806275196882}
   - component: {fileID: 1309214806275196881}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EnemyTrue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 669f58e3518550b4ca664418e187c373, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -82,6 +83,23 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &6507831406235093143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309214806275196880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daf4ca3317f9c0c4fb4d6d9a5e5cde38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MaxHealth: 100
+  m_DamagesParticles: {fileID: 7426268223614920760, guid: 4274f35ce73c1a3479b021c6f6656c36,
+    type: 3}
+  m_HealthSlider: {fileID: 0}
+  m_DisplayUI: 0
 --- !u!114 &1309214806275196882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,6 +115,10 @@ MonoBehaviour:
   m_Target: {fileID: 0}
   m_AttackRange: 3
   m_Speed: 5
+  m_Renderer: {fileID: 1309214806275196883}
+  m_StunMaterial: {fileID: 2100000, guid: 80a119cda88a58d4d8b9c06ca5af5588, type: 2}
+  m_DefaultMaterial: {fileID: 2100000, guid: 669f58e3518550b4ca664418e187c373, type: 2}
+  m_EnemyDeathParticle: {fileID: 0}
   m_AttackRate: 1
   m_AttackPoint: {fileID: 1309214807615699139}
   m_MaskToDetect:
@@ -127,7 +149,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1309214807615699140}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

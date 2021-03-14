@@ -47,7 +47,7 @@ public class Enemy : MonoBehaviour
 
     public void Move()
     {
-        if(CanMove == true)
+        if(CanMove)
         {
             this.transform.position = Vector3.MoveTowards(transform.position, m_Target.transform.position, (m_Speed * Time.deltaTime));
 
@@ -57,21 +57,25 @@ public class Enemy : MonoBehaviour
 
     public void AttackRange()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, m_AttackRange, m_MaskToDetect);
-
-        if(hitColliders.Length >= 1)
+        if (CanAttack)
         {
-            foreach (Collider collider in hitColliders)
+
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, m_AttackRange, m_MaskToDetect);
+
+            if (hitColliders.Length >= 1)
             {
+                foreach (Collider collider in hitColliders)
+                {
 
-                Attack(collider);
+                    Attack(collider);
 
 
+                }
             }
-        }
-        else
-        {
-            CanMove = true;
+            else
+            {
+                CanMove = true;
+            }
         }
         
         
@@ -81,18 +85,21 @@ public class Enemy : MonoBehaviour
     {
         CanMove = false;
         
-
-        if (m_AttackRate <= 1.5)
+        if (CanAttack)
         {
-            m_AttackRate += Time.deltaTime;
-            
-        }
-        else
-        {
-            Instantiate(m_PrefabFeedback, m_AttackPoint.transform.position, Quaternion.identity);
-            m_AttackRate = 0;
-            p_AttackedEntity.GetComponent<Health>().TakeDamages(10.0f);
 
+            if (m_AttackRate <= 1.5)
+            {
+                m_AttackRate += Time.deltaTime;
+
+            }
+            else
+            {
+                Instantiate(m_PrefabFeedback, m_AttackPoint.transform.position, Quaternion.identity);
+                m_AttackRate = 0;
+                p_AttackedEntity.GetComponent<Health>().TakeDamages(10.0f);
+
+            }
         }
     }
 
