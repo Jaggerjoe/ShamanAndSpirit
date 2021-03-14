@@ -90,7 +90,7 @@ MonoBehaviour:
   m_TargetList:
   - {fileID: 0}
   - {fileID: 0}
-  m_Ofsset: {x: 0, y: 30, z: -70}
-  m_MinZoom: 40
-  m_MaxZoom: 20
+  m_Ofsset: {x: 0, y: 80, z: -70}
+  m_MinZoom: 5
+  m_MaxZoom: 15
   m_ZoomLimiter: 100

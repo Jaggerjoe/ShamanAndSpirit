@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/BuildScenes/ManaGathering.unity
+    guid: a9f126f99088a824a970f768fca59dc5
+  - enabled: 1
+    path: Assets/Scenes/BuildScenes/EnnemiesSpawning.unity
+    guid: 003ea36c068d21d4aa74e266d46e79af
+  - enabled: 1
+    path: Assets/Scenes/BuildScenes/Spells.unity
+    guid: fc9dd029533673445bdfc6ad898db19d
   m_configObjects: {}

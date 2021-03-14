@@ -44,6 +44,10 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Destroy(this.gameObject);
+        if (collision.gameObject.tag == "Shaman")
+        {
+            collision.gameObject.GetComponent<Health>().TakeDamages(10.0f);
+            Destroy(this.gameObject);
+        }
     }
 }

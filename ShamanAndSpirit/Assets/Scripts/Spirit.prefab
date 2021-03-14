@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 7343101415180859678}
   - component: {fileID: 7343101415180859677}
   - component: {fileID: 7343101415180859676}
-  - component: {fileID: 1654621722}
-  - component: {fileID: 1654621723}
   - component: {fileID: 9089258839890726662}
+  - component: {fileID: 1654621723}
   - component: {fileID: 8650723633346849826}
   - component: {fileID: 6367494301629562787}
+  - component: {fileID: 1654621722}
   m_Layer: 0
   m_Name: Spirit
   m_TagString: Spirit
@@ -98,19 +98,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1654621722
-MonoBehaviour:
+--- !u!65 &9089258839890726662
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7343101415180859650}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9438c3e2d07e4bf4e9418f8c2fe0d54e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Speed: 5
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1654621723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,19 +142,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!65 &9089258839890726662
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7343101415180859650}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8650723633346849826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,5 +171,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_MaxMana: 100
+  m_ManaSliderPlayer: {fileID: 0}
+  m_ManaSliderSpirit: {fileID: 0}
+  m_ManaParticle: {fileID: 0}
+  m_ManaParticlePlayer: {fileID: 0}
   m_CurrentMana: 0
   m_PlayerM: {fileID: 0}
+--- !u!114 &1654621722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7343101415180859650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9438c3e2d07e4bf4e9418f8c2fe0d54e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Speed: 5
