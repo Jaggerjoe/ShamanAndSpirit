@@ -8,6 +8,16 @@ public class EnemyArcher : MonoBehaviour
     private Transform m_Target = null;
     [SerializeField]
     private GameObject m_ShootPoint;
+    [SerializeField]
+    private MeshRenderer m_Renderer;
+    [SerializeField]
+    private Material m_StunMaterial;
+    [SerializeField]
+    private Material m_DefaultMaterial;
+
+    [SerializeField]
+    private ParticleSystem m_EnemyDeathParticle;
+
 
     [SerializeField]
     private float m_AttackRange;
@@ -106,7 +116,7 @@ public class EnemyArcher : MonoBehaviour
     {
         CanAttack = false;
         CanMove = false;
-
+        m_Renderer.material = m_StunMaterial;
         Invoke(nameof(GetUnStunned), p_StunDuration);
     }
 
@@ -114,11 +124,19 @@ public class EnemyArcher : MonoBehaviour
     {
         CanAttack = true;
         CanMove = true;
+        m_Renderer.material = m_DefaultMaterial;
     }
     
 
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, m_AttackRange);
+    }
+
+    private void Die()
+    {
+        Instantiate(m_EnemyDeathParticle, transform.position, Quaternion.identity);
+        Destroy(this.gameObject);
+
     }
 }
