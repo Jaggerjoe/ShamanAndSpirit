@@ -14,9 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SpellType: 2
   m_ManaCost: 0
-  m_CoolDown: 1
+  m_CoolDown: 0.75
+  m_AffectedEntities:
+    serializedVersion: 2
+    m_Bits: 2048
   m_Damages: 0
-  m_Range: 100
+  m_Range: 7
+  m_ProjectilePrefab: {fileID: 0}
+  m_Speed: 5
+  m_Quantity: 1
+  m_TimeBetweenProjectiles: 0.5
+  m_ExplosiveProjectile: 0
+  m_ExplosionRange: 0
   m_Angle: 45
   m_SecondaryEffects: 
   m_StunDuration: 2

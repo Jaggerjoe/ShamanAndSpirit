@@ -13,17 +13,21 @@ public class SpellsCasting : MonoBehaviour
     private InputAction m_CastSpell3 = null;
     private InputAction m_CastSpell4 = null;
 
-    private Vector2 m_AimDirection = Vector2.zero;
+    private Vector3 m_AimDirection = Vector2.zero;
 
+    [Header("Gachette droite")]
     [SerializeField]
     private SO_Spells m_Spell1 = null;
     private float m_CurrentSpell1CoolDown = 0.0f;
+    [Header("Bouton droit")]
     [SerializeField]
     private SO_Spells m_Spell2 = null;
     private float m_CurrentSpell2CoolDown = 0.0f;
+    [Header("Gachette gauche")]
     [SerializeField]
     private SO_Spells m_Spell3 = null;
     private float m_CurrentSpell3CoolDown = 0.0f;
+    [Header("Bouton gauche")]
     [SerializeField]
     private SO_Spells m_Spell4 = null;
     private float m_CurrentSpell4CoolDown = 0.0f;
@@ -40,7 +44,10 @@ public class SpellsCasting : MonoBehaviour
             m_CastSpell4 = m_SpellsInput.actions["CastSpell4"];
         }
 
-        m_AimDirection = m_Aim.ReadValue<Vector2>();
+        m_AimDirection.x = m_Aim.ReadValue<Vector2>().x;
+        m_AimDirection.z = m_Aim.ReadValue<Vector2>().y;
+        m_AimDirection.y = 0.0f;
+        
         CheckSpell(m_CastSpell1, ref m_CurrentSpell1CoolDown, m_Spell1);
         CheckSpell(m_CastSpell2, ref m_CurrentSpell2CoolDown, m_Spell2);
         CheckSpell(m_CastSpell3, ref m_CurrentSpell3CoolDown, m_Spell3);
@@ -54,26 +61,10 @@ public class SpellsCasting : MonoBehaviour
             p_CurrentSpellCoolDown = p_CurrentSpellCoolDown - Time.deltaTime;
 
         }
-        else if (p_SpellInput.ReadValue<float>() != 0)
+        else if (p_SpellInput.ReadValue<float>() != 0 && p_CastSpell.ManaCost <= GetComponent<PlayerManaData>().m_CurrentMana && m_AimDirection != Vector3.zero)
         {
+            GetComponent<PlayerManaData>().m_CurrentMana = GetComponent<PlayerManaData>().m_CurrentMana - p_CastSpell.ManaCost;
             p_CurrentSpellCoolDown = p_CastSpell.CastSpell(this, m_AimDirection);
         }
     }
-
-    //Pour une raison qui m'échappe, j'ai pas besoin de ça...
-    //public IEnumerator CreateProjectiles(SO_Spells p_Spell, SpellsCasting p_PlayerCasting, Vector2 p_AimDirection)
-    //{
-    //    float l_CurrentTimer = 0.0f;
-    //    for (int i = 0; i < p_Spell.Quantity; i++)
-    //    {
-    //        while (l_CurrentTimer > 0.0f)
-    //        {
-    //            yield return null;
-    //        }
-    //        l_CurrentTimer = p_Spell.TimeBetweenProjectiles;
-    //        Vector3 l_ProjectilePosition = new Vector3(p_PlayerCasting.transform.position.x + p_AimDirection.x, p_PlayerCasting.transform.position.y, p_PlayerCasting.transform.position.z + p_AimDirection.y);
-    //        GameObject l_Projectile = Instantiate(p_Spell.ProjectilePrefab, l_ProjectilePosition, Quaternion.identity);
-    //        l_Projectile.GetComponent<Projectile>().SetProjectile(p_Spell.AffectedEntities, p_Spell.Speed, p_AimDirection, p_Spell.ExplosiveProjectile, p_Spell.ExplosionRange);
-    //    }
-    //}
 }

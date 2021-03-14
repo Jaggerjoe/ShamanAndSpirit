@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
         if (m_PlayerInput == null)
         {
             m_PlayerInput = GetComponent<PlayerInput>();
-            m_Move = m_PlayerInput.actions["move"];
+            m_Move = m_PlayerInput.actions["Move"];
         }
         move = m_Move.ReadValue<Vector2>();
         Movement(move, Time.deltaTime);

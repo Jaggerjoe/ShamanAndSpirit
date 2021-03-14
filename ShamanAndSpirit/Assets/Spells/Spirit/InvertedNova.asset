@@ -10,24 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7a794efb1207dc4ca9a10e7b9797c77, type: 3}
-  m_Name: TestProjectiles
+  m_Name: InvertedNova
   m_EditorClassIdentifier: 
-  m_SpellType: 0
+  m_SpellType: 1
   m_ManaCost: 0
-  m_CoolDown: 1
+  m_CoolDown: 3
   m_AffectedEntities:
     serializedVersion: 2
-    m_Bits: 0
-  m_Damages: 1
-  m_Range: 5
-  m_ProjectilePrefab: {fileID: 7389507010555901023, guid: 788ab8e97e0ba6042bf45ec51e7bfda1,
-    type: 3}
+    m_Bits: 1024
+  m_Damages: 0
+  m_Range: 4
+  m_ProjectilePrefab: {fileID: 0}
   m_Speed: 5
-  m_Quantity: 5
-  m_TimeBetweenProjectiles: 0.2
+  m_Quantity: 1
+  m_TimeBetweenProjectiles: 0.5
   m_ExplosiveProjectile: 0
   m_ExplosionRange: 0
-  m_Angle: 45
-  m_SecondaryEffects: 
-  m_StunDuration: 2
-  m_KnockbackValue: 1
+  m_Angle: 360
+  m_SecondaryEffects: 01000000
+  m_StunDuration: 0
+  m_KnockbackValue: -2.5
+  m_ParticlePrefab: {fileID: 8766476599404391432, guid: f37f513dec1786143932b9d721b51176,
+    type: 3}
