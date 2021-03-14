@@ -23,7 +23,14 @@ public class Enemy : MonoBehaviour
 
     public void Start()
     {
-        m_Target = FindObjectOfType<PlayerManager>().transform;
+        PlayerMovement[] m_Players = FindObjectsOfType<PlayerMovement>();
+        foreach (PlayerMovement l_Player in m_Players)
+        {
+            if (l_Player.tag == "Shaman")
+            {
+                m_Target = l_Player.transform;
+            }
+        }
     }
 
     public void Move()
@@ -45,7 +52,7 @@ public class Enemy : MonoBehaviour
             foreach (Collider collider in hitColliders)
             {
 
-                Attack();
+                Attack(collider);
 
 
             }
@@ -58,7 +65,7 @@ public class Enemy : MonoBehaviour
         
     }
 
-    public void Attack()
+    public void Attack(Collider p_AttackedEntity)
     {
         CanMove = false;
         
@@ -71,7 +78,7 @@ public class Enemy : MonoBehaviour
         else
         {
             m_AttackRate = 0;
-            Debug.Log("hit");
+            p_AttackedEntity.GetComponent<Health>().TakeDamages(10.0f);
 
         }
     }
@@ -82,10 +89,12 @@ public class Enemy : MonoBehaviour
         AttackRange();
     }
 
-    private void GetStunned()
+    public void GetStunned(float p_StunDuration)
     {
         CanAttack = false;
         CanMove = false;
+
+        Invoke(nameof(GetUnStunned), p_StunDuration);
     }
 
     private void GetUnStunned()

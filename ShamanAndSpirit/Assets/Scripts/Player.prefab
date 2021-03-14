@@ -14,9 +14,13 @@ GameObject:
   - component: {fileID: 600233236792608681}
   - component: {fileID: 587917484}
   - component: {fileID: 587917485}
+  - component: {fileID: 2459296499980302825}
+  - component: {fileID: 5696860755767970373}
+  - component: {fileID: 8410091928676479981}
+  - component: {fileID: 282355135921775939}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Shaman
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,7 +111,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9438c3e2d07e4bf4e9418f8c2fe0d54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerController: {fileID: 0}
   m_Speed: 5
 --- !u!114 &587917485
 MonoBehaviour:
@@ -140,3 +143,62 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &2459296499980302825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600233236792608683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daf4ca3317f9c0c4fb4d6d9a5e5cde38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MaxHealth: 100
+--- !u!54 &5696860755767970373
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600233236792608683}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!114 &8410091928676479981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600233236792608683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10abe011fecc875469751fb3772ded54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Spell1: {fileID: 11400000, guid: f8ede078fe2e5d044abe77234934268a, type: 2}
+  m_Spell2: {fileID: 11400000, guid: b11896e9574db36429d21f4f5ae32b0d, type: 2}
+  m_Spell3: {fileID: 11400000, guid: b11896e9574db36429d21f4f5ae32b0d, type: 2}
+  m_Spell4: {fileID: 11400000, guid: b11896e9574db36429d21f4f5ae32b0d, type: 2}
+--- !u!114 &282355135921775939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600233236792608683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc02b7c7257a3714fb518d4207d17642, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MaxMana: 100
+  m_CurrentMana: 100

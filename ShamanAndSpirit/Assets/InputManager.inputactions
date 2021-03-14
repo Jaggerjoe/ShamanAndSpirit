@@ -52,6 +52,14 @@
                     "expectedControlType": "Digital",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "SceneChanger",
+                    "type": "Value",
+                    "id": "c33da5a9-4e92-47bd-b9cd-8f2d91668c55",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -272,6 +280,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "CastSpell4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "db38fbf6-4f65-49ef-adae-f315f0754d9d",
+                    "path": "<Gamepad>/dpad",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "SceneChanger",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

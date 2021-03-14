@@ -25,10 +25,18 @@ public class EnemyArcher : MonoBehaviour
 
     [SerializeField]
     private LayerMask m_MaskToDetect;
+    
 
     public void Start()
     {
-        m_Target = FindObjectOfType<PlayerManager>().transform;
+        PlayerMovement[] m_Players = FindObjectsOfType<PlayerMovement>();
+        foreach (PlayerMovement l_Player in m_Players)
+        {
+            if (l_Player.tag == "Shaman")
+            {
+                m_Target = l_Player.transform;
+            }
+        }
     }
 
     public void Move()
@@ -94,10 +102,12 @@ public class EnemyArcher : MonoBehaviour
         transform.LookAt(m_Target);
     }
 
-    private void GetStunned()
+    public void GetStunned(float p_StunDuration)
     {
         CanAttack = false;
         CanMove = false;
+
+        Invoke(nameof(GetUnStunned), p_StunDuration);
     }
 
     private void GetUnStunned()

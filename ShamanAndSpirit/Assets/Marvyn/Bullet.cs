@@ -5,17 +5,23 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private Rigidbody m_RigidBody;
-    private PlayerManager m_Player;
+    private PlayerMovement m_Player;
    
     private void Awake()
     {
         m_RigidBody = GetComponent<Rigidbody>();
-        m_Player= FindObjectOfType<PlayerManager>();
+        PlayerMovement[] m_Players = FindObjectsOfType<PlayerMovement>();
+        foreach (PlayerMovement l_Player in m_Players)
+        {
+            if (l_Player.tag == "Shaman")
+            {
+                m_Player = l_Player;
+            }
+        }
         
     }
     private void Start()
     {
-
-        m_RigidBody.AddForce((m_Player.transform.position), ForceMode.Impulse);
+        m_RigidBody.AddForce((m_Player.transform.position - transform.position), ForceMode.Impulse);
     }
 }
