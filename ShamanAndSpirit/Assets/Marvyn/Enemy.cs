@@ -17,10 +17,12 @@ public class Enemy : MonoBehaviour
 
     private bool CanMove = true;
     private bool CanAttack = true;
-
+    [SerializeField]
+    private GameObject m_AttackPoint;
     [SerializeField]
     private LayerMask m_MaskToDetect;
-
+    [SerializeField]
+    private GameObject m_PrefabFeedback;
     public void Start()
     {
         PlayerMovement[] m_Players = FindObjectsOfType<PlayerMovement>();
@@ -77,6 +79,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
+            Instantiate(m_PrefabFeedback, m_AttackPoint.transform.position, Quaternion.identity);
             m_AttackRate = 0;
             p_AttackedEntity.GetComponent<Health>().TakeDamages(10.0f);
 
@@ -87,6 +90,7 @@ public class Enemy : MonoBehaviour
     {
         Move();
         AttackRange();
+        transform.LookAt(m_Target);
     }
 
     public void GetStunned(float p_StunDuration)

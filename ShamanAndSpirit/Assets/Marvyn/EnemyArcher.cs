@@ -90,7 +90,7 @@ public class EnemyArcher : MonoBehaviour
         {
             m_AttackRate = 0;
             GameObject l_Instancebullet = m_prefabBullet;
-            Instantiate(l_Instancebullet, transform.position, Quaternion.identity);
+            Instantiate(l_Instancebullet, m_ShootPoint.transform.position, Quaternion.identity);
 
         }
     }
