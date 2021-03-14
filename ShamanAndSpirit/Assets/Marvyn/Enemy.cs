@@ -13,6 +13,16 @@ public class Enemy : MonoBehaviour
     private float m_Speed;
 
     [SerializeField]
+    private MeshRenderer m_Renderer;
+    [SerializeField]
+    private Material m_StunMaterial;
+    [SerializeField]
+    private Material m_DefaultMaterial;
+
+    [SerializeField]
+    private ParticleSystem m_EnemyDeathParticle;
+
+    [SerializeField]
     float m_AttackRate = 0;
 
     private bool CanMove = true;
@@ -97,7 +107,7 @@ public class Enemy : MonoBehaviour
     {
         CanAttack = false;
         CanMove = false;
-
+        m_Renderer.material = m_StunMaterial;
         Invoke(nameof(GetUnStunned), p_StunDuration);
     }
 
@@ -105,10 +115,17 @@ public class Enemy : MonoBehaviour
     {
         CanAttack = true;
         CanMove = true;
+        m_Renderer.material = m_DefaultMaterial;
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, m_AttackRange);
+    }
+    private void Die()
+    {
+        Instantiate(m_EnemyDeathParticle, transform.position, Quaternion.identity);
+        Destroy(this.gameObject);
+
     }
 }
